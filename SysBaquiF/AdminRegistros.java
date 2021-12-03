@@ -5,23 +5,65 @@ public class AdminRegistros
     private Producto[] produc= new Producto[9];
     private int posVec= 4;
     
-    private void listarProductos()
+    private void separador()
     {
-        System.out.print("\nLista de productos y sus precios\n");
-        for(int i=0; i < posVec; i++)
-        {
-            System.out.print("\nProducto: " + produc[i].getNombre() + " " + produc[i].getPrecioBs() + " Bs.");
-        }
+        System.out.print("\n\n___________________________________________________________\n\n");
     }
     
     
-    private void iniciarPrograma()
+    
+    private int menu()
     {
+        int op;
+        separador();
+        System.out.print("SISTEMA DE ADMINISTRACION DE PRODUCTOS");
+        System.out.print("\n============================================");
+        System.out.print("\n\n1.- Ver productos.");
+        System.out.print("\n2.- Registrar un nuevo producto.");
+        System.out.print("\n3.- Modificar un producto.");
+        System.out.print("\n0.- Salir.");
+        op= Recursos.leer.nextInt();
+        Recursos.leer.nextLine();//limpiar
+        ejecutarServicio(op);
+        return op;
+    }
+    
+    private void ejecutarServicio(int opcion)
+    {
+        switch(opcion)
+        {
+            case 1:
+                separador();    
+                listarProductos();
+            break;
+            
+            case 2:
+                separador();
+                registrarProducto();
+            break;
+            
+            case 3:
+                separador();
+                modificarProducto();
+            break;
+            
+            case 0: System.out.println("\nEl programa fue cerrado correctamente.");
+            break;
+            
+            default: System.out.println("\nERROR:La opcion es incorrecta");
+        }
+    }
+            
+    public void iniciarPrograma()
+    {
+        int resp;
         precargarProductos();
         
-        registrarProducto();
-        
-        listarProductos();
+        do
+        {
+          resp=  menu();
+        }while(resp != 0);
+                
     }
     
     
@@ -58,6 +100,7 @@ public class AdminRegistros
             
             System.out.print("\nIngrese precio del producto: ");
             produc[posVec].setPrecioBs(Recursos.leer.nextDouble());
+            Recursos.leer.nextLine();//limpiar
             
             posVec++;
         }
@@ -66,6 +109,109 @@ public class AdminRegistros
            System.out.print("\nAlerta: Unidad de almacenamiento llena, no puedes registrar más productos "); 
         }
     }
+    
+    //Resp c)
+    private void listarProductos()
+    {
+        System.out.print("\nLista de productos y sus precios\n");
+        for(int i=0; i < posVec; i++)
+        {
+            System.out.print("\nProducto: " + produc[i].getCodigo() + " " + produc[i].getNombre() + " " + produc[i].getPrecioBs() + " Bs.");
+        }
+    }
+    
+    //Resp d)
+    private int existeProducto(String cod)
+    {
+        int resp= -1;
+        
+        for(int i=0; i < posVec; i++)
+        {
+            if( produc[i].getCodigo().equals(cod) )
+            {
+                resp= i;
+            }
+        }
+        
+        return resp;
+    }
+    
+    private void cambiarNombre(int pos, String nom)
+    {
+         produc[pos].setNombre(nom);
+         System.out.print("\nEl nombre fue actualizado correctamente.");
+    }
+    
+    private void cambiarPrecio(int pos, double precio)
+    {
+        if(precio >= 0)
+        {
+            produc[pos].setPrecioBs(precio);
+            System.out.print("\nEl precio se modifico correctamente.");
+        }
+        else
+        {
+            System.out.print("\nERROR: El monto del precio es incorrecto.");
+        }
+        
+    } 
+    
+    private void modificarProducto()
+    {
+        int op, verificador;
+        double prec;
+        String cod, nom;
+        System.out.print("\nModulo de Actualizacion para Datos");
+        System.out.print("\n=====================================");
+        System.out.print("\n1.-Cambiar nombre de producto.");
+        System.out.print("\n2.-Cambiar precio de producto.");
+        System.out.print("\n0.-Cancelar.");
+        op= Recursos.leer.nextInt();
+        Recursos.leer.nextLine();//limpiar
+        
+        if(op == 1 || op == 2)
+        {
+            System.out.print("\n\nIngrese el código del producto: ");
+            cod= Recursos.leer.next();
+            Recursos.leer.nextLine();//limpiar
+            
+            verificador =  existeProducto(cod);
+            if(verificador > -1)
+            {
+                switch(op)
+                {
+                    case 1:
+                        System.out.print("\n\nIngrese nombre: ");                        
+                        nom= Recursos.leer.nextLine();
+                        cambiarNombre(verificador, nom);
+                    break;
+                    
+                    case 2:
+                        System.out.print("\n\nIngrese precio: ");
+                        prec= Recursos.leer.nextDouble();
+                        Recursos.leer.nextLine();//limpiar
+                        cambiarPrecio(verificador, prec);
+                    break;
+                }
+            }
+            else
+            {
+                System.out.print("ALERTA:El producto "+cod+" no esta registrado");
+            }
+        }
+        else
+        { 
+            if(op==0)
+            {
+            }
+            else
+            {
+                System.out.print("ERROR:La opcion seleccionada es incorrecto.");
+            }
+        }
+        
+    }
+    
 }
 
 
