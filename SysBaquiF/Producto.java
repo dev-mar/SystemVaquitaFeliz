@@ -6,6 +6,7 @@ public class Producto
     private String nombre;
     private String cantidad;
     private double precioBs;
+    private int stock;
     
     //Constructores
     public Producto()
@@ -14,17 +15,52 @@ public class Producto
         this.nombre="";
         this.cantidad="";
         this.precioBs=0;
+        this.stock=0;
     }
     
-    public Producto(String codigo, String nombre, String cantidad, double precio)
+    public Producto(String codigo, String nombre, String cantidad, double precio, int stock)
     {
         this.codigo= codigo;
         this.nombre= nombre;
         this.cantidad= cantidad;
         this.precioBs= precio;
+        this.stock= stock;
     }
     
     //Metodos (set/get)
+    public void setStock(int stock)
+    {
+        this.stock= stock;
+    }
+    public int setMovimiento(String tipo, int cantidad)
+    {
+        int st= -1;
+        if(tipo.equalsIgnoreCase("compra"))
+        {
+            st= this.stock + cantidad;
+            setStock(st);
+        }
+        else
+        {
+            if(tipo.equalsIgnoreCase("venta"))
+            {
+                st= this.stock - cantidad;
+                if(st >= 0)
+                {
+                    setStock(st);
+                }
+            }
+        }
+        return st;
+    }
+    
+    public int getStock()
+    {
+        return this.stock;
+    }
+    
+    
+    
     public void setCodigo(String codigo)
     {
         this.codigo= codigo;

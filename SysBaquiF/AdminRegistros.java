@@ -2,8 +2,8 @@
 
 public class AdminRegistros
 {
-    private Producto[] produc= new Producto[9];
-    private int posVec= 4;
+    public static Producto[] produc= new Producto[9];
+    public static int posVec= 4;
     
     private void separador()
     {
@@ -77,9 +77,9 @@ public class AdminRegistros
         produc[0].setCantidad("1L.");
         produc[0].setPrecioBs(8);
         
-        produc[1]= new Producto("P-102", "Yogurt Frutado Durazno", "1L.", 15);
-        produc[2]= new Producto("P-103", "Gelatina Personal Sabor Frutilla", "100ml.", 1.5);
-        produc[3]= new Producto("P-104", "Leche Saborizada Chocolate", "0.9L.", 9.5);
+        produc[1]= new Producto("P-102", "Yogurt Frutado Durazno", "1L.", 15, 4);
+        produc[2]= new Producto("P-103", "Gelatina Personal Sabor Frutilla", "100ml.", 1.5, 105);
+        produc[3]= new Producto("P-104", "Leche Saborizada Chocolate", "0.9L.", 9.5, 20);
     }
     
     //Resp b)
