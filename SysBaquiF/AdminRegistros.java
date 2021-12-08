@@ -5,17 +5,10 @@ public class AdminRegistros
     public static Producto[] produc= new Producto[9];
     public static int posVec= 4;
     
-    private void separador()
-    {
-        System.out.print("\n\n___________________________________________________________\n\n");
-    }
-    
-    
-    
     private int menu()
     {
         int op;
-        separador();
+        Recursos.separador();
         System.out.print("SISTEMA DE ADMINISTRACION DE PRODUCTOS");
         System.out.print("\n============================================");
         System.out.print("\n\n1.- Ver productos.");
@@ -33,17 +26,17 @@ public class AdminRegistros
         switch(opcion)
         {
             case 1:
-                separador();    
+                Recursos.separador();    
                 listarProductos();
             break;
             
             case 2:
-                separador();
+                Recursos.separador();
                 registrarProducto();
             break;
             
             case 3:
-                separador();
+                Recursos.separador();
                 modificarProducto();
             break;
             
@@ -102,6 +95,7 @@ public class AdminRegistros
             produc[posVec].setPrecioBs(Recursos.leer.nextDouble());
             Recursos.leer.nextLine();//limpiar
             
+            System.out.print("\n\nEl registro se completo con exito: ");
             posVec++;
         }
         else
@@ -181,13 +175,15 @@ public class AdminRegistros
                 switch(op)
                 {
                     case 1:
-                        System.out.print("\n\nIngrese nombre: ");                        
+                        System.out.print("\n\nNombre anterior: "+ produc[verificador].getNombre());
+                        System.out.print("\n\nIngrese nuevo nombre: ");                        
                         nom= Recursos.leer.nextLine();
                         cambiarNombre(verificador, nom);
                     break;
                     
                     case 2:
-                        System.out.print("\n\nIngrese precio: ");
+                        System.out.print("\n\nPrecio anterior: "+ produc[verificador].getPrecioBs());
+                        System.out.print("\n\nIngrese nuevo precio: ");
                         prec= Recursos.leer.nextDouble();
                         Recursos.leer.nextLine();//limpiar
                         cambiarPrecio(verificador, prec);
