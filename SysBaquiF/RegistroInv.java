@@ -20,6 +20,16 @@ public class RegistroInv
         this.movimiento= "-";
     }
     
+    public RegistroInv(int nro, String fecha, String codigo, String nombre, String movimiento, int cantidad)
+    {
+        this.nro= nro;
+        this.cantidad= cantidad;
+        this.producto= nombre;
+        this.codigo= codigo;
+        this.fecha= fecha;
+        this.movimiento= movimiento;
+    }
+    
     
     //metodos(set/get)
     public void setNro(int nro)
@@ -74,5 +84,14 @@ public class RegistroInv
     public String getMovimiento()
     {
         return this.movimiento;
+    }
+    
+    public String toString()
+    {
+        String msn="";
+        
+        msn= this.nro + "  " + this.fecha + "  " + this.codigo + "  " + this.producto + "  " + this.movimiento + "  " + this.cantidad;          
+        
+        return msn;
     }
 }

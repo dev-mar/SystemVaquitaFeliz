@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=CompraVenta
+comment1.params=
+comment1.target=void\ menu()
+comment2.params=op
+comment2.target=void\ ejecutarServicio(int)
+comment3.params=
+comment3.target=void\ iniciarPrograma()
+comment4.params=
+comment4.target=void\ comprar()
+numComments=5

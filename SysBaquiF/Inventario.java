@@ -1,12 +1,12 @@
-
+import java.time.*;
 
 public class Inventario
 {
-    private RegistroInv[] hojaInventario;
+    public static RegistroInv[] hojaInventario= new RegistroInv[100];    
     private int opc;
     
-    private int cantProd;
-    private Producto[] produc;
+    public static int cantProd;
+    public static Producto[] produc;
     
     private void actualizarDatos()
     {
@@ -32,6 +32,11 @@ public class Inventario
                 servicioDeNotificacion(code);
             break;
             
+            case 3:
+                Recursos.separador();
+                mostrarHojaInventario();
+            break;
+            
             case 0:
                 Recursos.separador();
                 System.out.print("\nAcaba de salir del sistema de Inventarios.\n");
@@ -47,6 +52,7 @@ public class Inventario
     {
         actualizarDatos();
         
+        
         do
         {
             menu();
@@ -55,9 +61,47 @@ public class Inventario
     }
     
     //Resp e)
+    
+    public static int phi= 0;
     private void crearHojaInventario()
     {
         hojaInventario= new RegistroInv[100];
+    }
+    
+    public static void mostrarHojaInventario()
+    {
+        System.out.print("\n Hoja de inventario para movimientos");
+        System.out.print("\n==============================================\n");
+        for(int i= 0; i < phi; i++)
+        {
+            System.out.print("\n" + hojaInventario[i].toString());
+        }
+        
+    }
+    
+    public static String buscarNombre(String cod)
+    {
+        String nom= "";
+        for(int i= 0; i < cantProd; i++)
+        {
+            if(produc[i].getCodigo().equals(cod))
+            {
+                nom= produc[i].getNombre();
+            }
+        }
+        return nom;
+    }
+    
+    public static void registrarMovimiento(String codigo, int cantidad, String movimiento)
+    {
+        int nro;
+        String fecha= " " + LocalDate.now()  , nombre="";
+        nro= phi + 1;
+        nombre= buscarNombre(codigo);
+        
+        hojaInventario[phi]= new RegistroInv(nro, fecha, codigo,nombre, movimiento, cantidad);
+        
+        phi++;
     }
     
     //Resp f)
@@ -102,6 +146,7 @@ public class Inventario
         System.out.print("\n===========================");
         System.out.print("\n1.- Ver Stock General");
         System.out.print("\n2.- Verificar stock de un producto.");
+        System.out.print("\n3.- Ver hoja de movimientos.");
         System.out.print("\n0.- Salir.");
         System.out.print("\n\nIngrese un numero de una de las opciones: ");
         opc= Recursos.leer.nextInt();
