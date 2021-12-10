@@ -44,7 +44,7 @@ public class CompraVenta
     
     private void comprar()
     {
-        String cod;
+        String cod, nom, opc;
         int cant;        
         System.out.print("\nServicio de Compra.\n");
         System.out.print("\nIngrese codigo del producto: ");
@@ -52,8 +52,23 @@ public class CompraVenta
         System.out.print("\nIngrese la cantidad de compra:");
         cant= Recursos.leer.nextInt();
         
-        Inventario.registrarMovimiento(cod, cant, "Compra");
+        nom= Inventario.buscarNombre(cod);        
+        System.out.print("\nEsta a punto de comprar " + cant + " unidades del producto " + nom + ":");
+        System.out.print("\nPresiones S para SI o N para NO:");
+        opc=Recursos.leer.next();
         
+        if( opc.equalsIgnoreCase("s"))
+        { 
+            Inventario.registrarMovimiento(cod, cant, "Compra");
+            
+            Recursos.separador();
+            System.out.print("\nCompraste "+ cant + " unidades del producto " + nom);
+        }
+        else
+        {
+            Recursos.separador();
+            System.out.print("\nLa compra fue cancelada..!!!");
+        }
     }
     
     

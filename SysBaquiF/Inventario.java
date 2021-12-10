@@ -92,14 +92,34 @@ public class Inventario
         return nom;
     }
     
+    public static int buscarPosicion(String cod)
+    {
+        int pos=-1;
+        for(int i= 0; i < cantProd; i++)
+        {
+            if(produc[i].getCodigo().equals(cod))
+            {
+                pos= i;
+            }
+        }
+        return pos;
+    }
+    
     public static void registrarMovimiento(String codigo, int cantidad, String movimiento)
     {
-        int nro;
+        int nro, pos;
         String fecha= " " + LocalDate.now()  , nombre="";
         nro= phi + 1;
         nombre= buscarNombre(codigo);
+        pos= buscarPosicion(codigo);
         
         hojaInventario[phi]= new RegistroInv(nro, fecha, codigo,nombre, movimiento, cantidad);
+        
+        //En esta parte usamos el metodo de el objeto Producto para cambiar su Stock.
+        if(pos >= 0)
+        {
+            AdminRegistros.produc[pos].setMovimiento(movimiento, cantidad);
+        }
         
         phi++;
     }

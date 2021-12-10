@@ -67,12 +67,12 @@ public class AdminRegistros
         
         produc[0].setCodigo("P-101");
         produc[0].setNombre("Leche Natural");
-        produc[0].setCantidad("1L.");
+        produc[0].setContenido("1L.");
         produc[0].setPrecioBs(8);
         
-        produc[1]= new Producto("P-102", "Yogurt Frutado Durazno", "1L.", 15, 4);
-        produc[2]= new Producto("P-103", "Gelatina Personal Sabor Frutilla", "100ml.", 1.5, 105);
-        produc[3]= new Producto("P-104", "Leche Saborizada Chocolate", "0.9L.", 9.5, 20);
+        produc[1]= new Producto("P-102", "Yogurt Frutado Durazno", "1L.", 15, 0);
+        produc[2]= new Producto("P-103", "Gelatina Personal Sabor Frutilla", "100ml.", 1.5, 0);
+        produc[3]= new Producto("P-104", "Leche Saborizada Chocolate", "0.9L.", 9.5, 0);
     }
     
     //Resp b)
@@ -88,8 +88,8 @@ public class AdminRegistros
             System.out.print("\nIngrese nombre del producto: ");
             produc[posVec].setNombre(Recursos.leer.nextLine());
             
-            System.out.print("\nIngrese cantidad del producto: ");
-            produc[posVec].setCantidad(Recursos.leer.nextLine());
+            System.out.print("\nIngrese contenido del producto: ");
+            produc[posVec].setContenido(Recursos.leer.nextLine());
             
             System.out.print("\nIngrese precio del producto: ");
             produc[posVec].setPrecioBs(Recursos.leer.nextDouble());

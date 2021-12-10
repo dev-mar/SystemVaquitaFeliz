@@ -4,7 +4,7 @@ public class Producto
     //Atributos
     private String codigo;
     private String nombre;
-    private String cantidad;
+    private String contenido;
     private double precioBs;
     private int stock;
     
@@ -13,16 +13,16 @@ public class Producto
     {
         this.codigo="";
         this.nombre="";
-        this.cantidad="";
+        this.contenido="";
         this.precioBs=0;
         this.stock=0;
     }
     
-    public Producto(String codigo, String nombre, String cantidad, double precio, int stock)
+    public Producto(String codigo, String nombre, String contenido, double precio, int stock)
     {
         this.codigo= codigo;
         this.nombre= nombre;
-        this.cantidad= cantidad;
+        this.contenido= contenido;
         this.precioBs= precio;
         this.stock= stock;
     }
@@ -32,19 +32,20 @@ public class Producto
     {
         this.stock= stock;
     }
-    public int setMovimiento(String tipo, int cantidad)
+    //Metodo que permite cambiar el valor del Stock con respecot a ser una Compra o Venta.
+    public int setMovimiento(String tipo, int contenido)
     {
         int st= -1;
         if(tipo.equalsIgnoreCase("compra"))
         {
-            st= this.stock + cantidad;
+            st= this.stock + contenido;
             setStock(st);
         }
         else
         {
             if(tipo.equalsIgnoreCase("venta"))
             {
-                st= this.stock - cantidad;
+                st= this.stock - contenido;
                 if(st >= 0)
                 {
                     setStock(st);
@@ -79,13 +80,13 @@ public class Producto
         return this.nombre;
     }
     
-    public void setCantidad(String cantidad)
+    public void setContenido(String contenido)
     {
-        this.cantidad= cantidad;
+        this.contenido= contenido;
     }
-    public String getCantidad()
+    public String getContenido()
     {
-        return this.cantidad;
+        return this.contenido;
     }
     
     public void setPrecioBs(double precio)
