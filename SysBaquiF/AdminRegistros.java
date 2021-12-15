@@ -5,6 +5,8 @@ public class AdminRegistros
     public static Producto[] produc= new Producto[9];
     public static int posVec= 4;
     
+      
+    
     private int menu()
     {
         int op;

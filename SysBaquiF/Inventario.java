@@ -105,6 +105,20 @@ public class Inventario
         return pos;
     }
     
+    public static String detalleVentaProducto(String codigo, int cantidad)
+    {
+        String nombre, msn;
+        int pos;
+        double precio, total;
+        nombre = buscarNombre(codigo);
+        pos= buscarPosicion(codigo);
+        precio= produc[pos].getPrecioBs();
+        total= cantidad * precio;
+        
+        msn= "\n" +nombre + " " + cantidad + " unidades a " + precio + " Bs.\t\t\t" + total + " Bs.";
+        return msn;
+    }
+    
     public static void registrarMovimiento(String codigo, int cantidad, String movimiento)
     {
         int nro, pos;
@@ -125,7 +139,7 @@ public class Inventario
     }
     
     //Resp f)
-    private void servicioDeNotificacion(String cod)
+    public static int servicioDeNotificacion(String cod)
     {
         int valor= -1;
         for(int i= 0; i < cantProd; i++)
@@ -158,6 +172,7 @@ public class Inventario
             System.out.println("ALERTA: El codigo del producto no existe.");
         }                
         
+        return valor;
     }
     
     private void menu()

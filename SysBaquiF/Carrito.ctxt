@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Carrito
+comment1.params=
+comment1.target=Carrito()
+comment2.params=codigo\ cantidad
+comment2.target=Carrito(java.lang.String,\ int)
+comment3.params=codigo
+comment3.target=void\ setCodigo(java.lang.String)
+comment4.params=
+comment4.target=java.lang.String\ getCodigo()
+comment5.params=cantidad
+comment5.target=void\ setCantidad(int)
+comment6.params=
+comment6.target=int\ getCantidad()
+numComments=7
